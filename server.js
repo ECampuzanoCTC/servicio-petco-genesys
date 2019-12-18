@@ -1,19 +1,21 @@
 import express from 'express';
-
+import bp from 'body-parser';
 let app = express();
-let port = process.env.PORT || 3000;
+
+let port = process.env.PORT || 8080;
 
 app.get('/', (req, res)=>{
     res.send({
         response: "Response /GET"
     });
 })
-app.get('/phoneNumber', (req, res)=>{
-    res.send(
-        {
-            response: "Response /GET /phoneNumber"
-        }
-    );
+app.get('/getClienteFromPhone/:phone', (req, res)=>{
+    let { phone } = req.params;
+    if(phone)
+        res.send({
+            phone,
+            "resonse": "getClienteFromPhone"
+        })
 });
 
 

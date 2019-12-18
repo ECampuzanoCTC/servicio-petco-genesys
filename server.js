@@ -3,10 +3,15 @@ import express from 'express';
 let app = express();
 let port = process.env.PORT || 3000;
 
-app.get('/phoneNumber', (res, req)=>{
-    req.send(
+app.get('/', (req, res)=>{
+    res.send({
+        response: "Response /GET"
+    });
+})
+app.get('/phoneNumber', (req, res)=>{
+    res.send(
         {
-            response: "Response Test"
+            response: "Response /GET /phoneNumber"
         }
     );
 });

@@ -20,12 +20,7 @@ app.get('/getClienteFromPhone/:phone', (req, res)=>{
     .then(resPromise=>{
         parseString(resPromise.data, (err, jsonParsed)=>{
             let parsed = jsonParsed.ArrayOfContact.Contact;
-
-            let jsonResponse = {
-                response: "getClienteFromPhone",
-                phone
-                
-            };
+            let jsonResponse = { };
 
             for(var obj of parsed){
                 for(var property in obj){
@@ -41,6 +36,9 @@ app.get('/getClienteFromPhone/:phone', (req, res)=>{
                 }
             }
             
+            jsonResponse.response = "getClienteFromPhone";
+            jsonResponse.phone = phone;
+
             res.send(jsonResponse);
         })
     })

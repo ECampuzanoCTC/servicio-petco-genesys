@@ -31,7 +31,7 @@ app.get('/getClienteFromPhone/:phone', (req, res)=>{
                     ...parsed */
                 ]
             }
-            
+
             res.send(jsonResponse);
         })
     })

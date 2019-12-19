@@ -20,11 +20,10 @@ app.get('/getClienteFromPhone/:phone', (req, res)=>{
         "description": "Response objeto de clientes",
         "type": "array",
         "properties": {},
-        "items": [
+        "content": [
+            
             {
-                "response": "getClienteFromPhone"
-            },
-            {
+                "response": "getClienteFromPhone",
                 phone
             }
         ]

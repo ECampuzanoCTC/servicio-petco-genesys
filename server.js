@@ -11,21 +11,20 @@ app.get('/', (req, res)=>{
 })
 app.get('/getClienteFromPhone/:phone', (req, res)=>{
     let { phone } = req.params;
-    let json = 
-{
-  "title": "Response",
-  "description": "Response objeto de clientes",
-  "type": "array",
-  "properties": {},
-  "items": [
-    {
-        "resonse": "getClienteFromPhone"
-    },
-    {
-      phone
+    let json = {
+        "title": "Response",
+        "description": "Response objeto de clientes",
+        "type": "array",
+        "properties": {},
+        "items": [
+            {
+                "response": "getClienteFromPhone"
+            },
+            {
+            phone
+            }
+        ]
     }
-  ]
-}
     if(phone)
         res.send({
             ...json

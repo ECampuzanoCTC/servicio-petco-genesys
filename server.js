@@ -2,7 +2,7 @@ import express from 'express';
 import bp from 'body-parser';
 let app = express();
 
-let port = process.env.PORT || 8080;
+let port = process.env.PORT || 3000;
 
 app.get('/', (req, res)=>{
     res.send({
@@ -11,10 +11,25 @@ app.get('/', (req, res)=>{
 })
 app.get('/getClienteFromPhone/:phone', (req, res)=>{
     let { phone } = req.params;
+    let json = 
+{
+  "title": "Response",
+  "description": "Response objeto de clientes",
+  "type": "array",
+  "properties": {},
+  "items": [
+    {
+        "resonse": "getClienteFromPhone"
+    },
+    {
+      phone
+    }
+  ]
+}
     if(phone)
         res.send({
-            phone,
-            "resonse": "getClienteFromPhone"
+            json
+            
         })
 });
 

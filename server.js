@@ -33,8 +33,8 @@ app.get('/getClienteFromPhone/:phone', (req, res)=>{
                     {
                         response: "getClienteFromPhone",
                         phone
-                    },
-                    ...parsed
+                    }/* ,
+                    ...parsed */
                 ]
             }
             res.send(jsonResponse);

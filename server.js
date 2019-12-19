@@ -23,9 +23,12 @@ app.get('/getClienteFromPhone/:phone', (req, res)=>{
 
             let jsonResponse = {
                 response: "getClienteFromPhone",
-                phone
-            }/* ,
-                    ...parsed */
+                phone,
+                ...parsed["0"]
+        };
+          
+        
+        
             
 
             res.send(jsonResponse);

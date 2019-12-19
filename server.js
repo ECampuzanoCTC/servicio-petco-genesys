@@ -24,14 +24,10 @@ app.get('/getClienteFromPhone/:phone', (req, res)=>{
 
             for(var obj of parsed){
                 for(var property in obj){
-                    if(property.includes('petco')){
-                        for(var i = 0; i < obj[property].length; i++){
-                            var p = "https://".concat(obj[property][i]);
-                            obj[property][i] = p; 
-                            console.log(p);
-                        }
+                    if(property.includes('petco'))
+                        for(var i = 0; i < obj[property].length; i++)
+                            obj[property][i] = "https://".concat(obj[property][i]);
                             
-                    }
                     jsonResponse[property] = obj[property];
                 }
             }

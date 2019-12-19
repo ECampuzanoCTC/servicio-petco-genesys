@@ -28,10 +28,19 @@ app.get('/getClienteFromPhone/:phone', (req, res)=>{
         parseString(resPromise.data, (err, jsonParsed)=>{
             let parsed = jsonParsed.ArrayOfContact.Contact;
             let jsonResponse = {
-                "content": {
-                    "response": "getClienteFromPhone",
-                    phone
-                }
+                
+                
+                    "content": [
+                
+                        {
+                            "response": "getClienteFromPhone",
+                            "phone": "5551987860"
+                        }
+                
+                    ]
+                
+
+
             }
             res.sendStatus(200).send(jsonResponse);
         })

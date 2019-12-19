@@ -21,16 +21,15 @@ app.get('/getClienteFromPhone/:phone', (req, res)=>{
         parseString(resPromise.data, (err, jsonParsed)=>{
             let parsed = jsonParsed.ArrayOfContact.Contact;
 
-            let jsonResponse = {
-                content: [
+            let jsonResponse = 
+
             
                     {
                         response: "getClienteFromPhone",
                         phone
                     }/* ,
                     ...parsed */
-                ]
-            }
+            
 
             res.send(jsonResponse);
         })

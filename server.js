@@ -21,13 +21,17 @@ app.get('/getClienteFromPhone/:phone', (req, res)=>{
         parseString(resPromise.data, (err, jsonParsed)=>{
             let parsed = jsonParsed.ArrayOfContact.Contact;
             let jsonResponse = { };
-
+            if(!parsed || parsed === {} )
+                res.send({
+                    response: "getClienteFromPhone",
+                    phone
+                });
             for(var obj of parsed){
                 for(var property in obj){
                     if(property.includes('petco'))
                         for(var i = 0; i < obj[property].length; i++)
                             obj[property][i] = "https://".concat(obj[property][i]);
-                            
+
                     jsonResponse[property] = obj[property];
                 }
             }

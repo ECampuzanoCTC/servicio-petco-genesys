@@ -16,10 +16,6 @@ app.get('/', (req, res)=>{
 app.get('/getClienteFromPhone/:phone', (req, res)=>{
     let { phone } = req.params;
     let json = {
-        "title": "Response",
-        "description": "Response objeto de clientes",
-        "type": "array",
-        "properties": {},
         "content": {
             "response": "getClienteFromPhone",
             phone
@@ -32,8 +28,7 @@ app.get('/getClienteFromPhone/:phone', (req, res)=>{
         parseString(resPromise.data, (err, jsonParsed)=>{
             let parsed = jsonParsed.ArrayOfContact.Contact;
             res.send({
-                ...json,
-                parsed
+                ...json
             })
         })
     })

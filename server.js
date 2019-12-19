@@ -15,17 +15,12 @@ app.get('/', (req, res)=>{
 })
 app.get('/getClienteFromPhone/:phone', (req, res)=>{
     let { phone } = req.params;
-    let json = {
-        "content": {
-            "response": "getClienteFromPhone",
-            phone
-        }
-    }
 
     axios.get(`http://201.149.55.114/WSpetco.asmx/getContact?numtel=${phone}`)
     .then(resPromise=>{
         parseString(resPromise.data, (err, jsonParsed)=>{
             let parsed = jsonParsed.ArrayOfContact.Contact;
+
             let jsonResponse = {
                 content: [
             
@@ -36,6 +31,7 @@ app.get('/getClienteFromPhone/:phone', (req, res)=>{
                     ...parsed */
                 ]
             }
+            
             res.send(jsonResponse);
         })
     })

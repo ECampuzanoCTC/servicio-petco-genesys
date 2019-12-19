@@ -27,9 +27,13 @@ app.get('/getClienteFromPhone/:phone', (req, res)=>{
     .then(resPromise=>{
         parseString(resPromise.data, (err, jsonParsed)=>{
             let parsed = jsonParsed.ArrayOfContact.Contact;
-            res.send({
-                ...json
-            })
+            let jsonResponse = {
+                "content": {
+                    "response": "getClienteFromPhone",
+                    phone
+                }
+            }
+            res.sendStatus(200).send(jsonResponse);
         })
     })
     .catch(err=> console.log(err) );

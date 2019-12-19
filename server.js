@@ -21,10 +21,8 @@ app.get('/getClienteFromPhone/:phone', (req, res)=>{
         "type": "array",
         "properties": {},
         "content": {
-            
             "response": "getClienteFromPhone",
             phone
-            
         }
     }
     
@@ -38,18 +36,8 @@ app.get('/getClienteFromPhone/:phone', (req, res)=>{
                 parsed
             })
         })
-    });
-
-    /* if(phone)
-        res.send({
-            ...json
-            
-        })
-    else
-        res.send({
-            ...json, items:[]
-        }
-        ); */
+    })
+    .catch(err=> console.log(err) );
 });
 
 

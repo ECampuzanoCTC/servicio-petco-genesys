@@ -28,7 +28,7 @@ app.get('/getClienteFromPhone/:phone', (req, res)=>{
 }
     if(phone)
         res.send({
-            json
+            ...json
             
         })
 });

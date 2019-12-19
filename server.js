@@ -30,6 +30,11 @@ app.get('/getClienteFromPhone/:phone', (req, res)=>{
             ...json
             
         })
+    else
+        res.send({
+            ...json, items:[]
+        }
+        );
 });
 
 

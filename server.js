@@ -19,8 +19,6 @@ app.get('/getClienteFromPhone/:phone', (req, res)=>{
     axios.get(`http://201.149.55.114/WSpetco.asmx/getContact?numtel=${phone}`)
     .then(resPromise=>{
         let jsonResponse = {
-            response: "getClienteFromPhone",
-            phone,
             "IDCli":
                 ""
             ,

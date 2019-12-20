@@ -177,15 +177,12 @@ app.get('/getClienteFromPhone/:phone', (req, res)=>{
          }
         if(!(resPromise.data.includes("<Contact>") && resPromise.data.includes("</Contact>"))){
             res.send(jsonResponse);
-             return;
-            }
+            return;
+        }
         parseString(resPromise.data, (err, jsonParsed)=>{
             let parsed = jsonParsed.ArrayOfContact.Contact;
             if(!parsed || parsed === {} || parsed === [] || err)
                 res.send(jsonResponse);
-            
-            
-
 
             for(var obj of parsed){
                 let jsonString =  JSON.stringify(obj).replace(/[\[\]]/gi, "");
@@ -197,7 +194,6 @@ app.get('/getClienteFromPhone/:phone', (req, res)=>{
                     jsonResponse[property] = obj[property];
                 }
             } 
-            
             
             res.send(jsonResponse);
         })

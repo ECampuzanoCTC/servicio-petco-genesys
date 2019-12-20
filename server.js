@@ -18,12 +18,7 @@ app.get('/getClienteFromPhone/:phone', (req, res)=>{
 
     axios.get(`http://201.149.55.114/WSpetco.asmx/getContact?numtel=${phone}`)
     .then(resPromise=>{
-        if(!(resPromise.data.includes() && resPromise.data.includes()))
-            res.send({
-                response: "getClienteFromPhone",
-                phone
-            });
-
+        
         parseString(resPromise.data, (err, jsonParsed)=>{
             let parsed = jsonParsed.ArrayOfContact.Contact;
             let jsonResponse = { };

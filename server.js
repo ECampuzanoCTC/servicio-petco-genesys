@@ -181,7 +181,7 @@ app.get('/getClienteFromPhone/:phone', (req, res)=>{
         }
         parseString(resPromise.data, (err, jsonParsed)=>{
             let parsed = jsonParsed.ArrayOfContact.Contact;
-            if(!parsed || parsed === {} || parsed === [] || err)
+            if(err)
                 res.send(jsonResponse);
 
             for(var obj of parsed){

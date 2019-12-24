@@ -187,7 +187,7 @@ app.get('/getClienteFromPhone/:phone', (req, res)=>{
                 obj = JSON.parse(jsonString);
                 for(var property in obj){
                     if(property.includes('petco'))
-                        obj[property] = `http://${obj[property]}`;
+                        obj[property] = `https://${obj[property]}`;
 
                     jsonResponse[property] = obj[property];
                 }
@@ -373,7 +373,7 @@ app.get('/getClientByEmail/:email', (req, res)=>{
                 obj = JSON.parse(jsonString);
                 for(var property in obj){
                     if(property.includes('petco'))
-                        obj[property] = `http://${obj[property]}`;
+                        obj[property] = `https://${obj[property]}`;
 
                     jsonResponse[property] = obj[property];
                 }

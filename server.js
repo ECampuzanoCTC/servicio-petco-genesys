@@ -3,7 +3,7 @@ import bp from 'body-parser';
 import axios from 'axios';
 import xml2js  from 'xml2js';
 
-let parseString = xml2js.parseString
+let { parseString } = xml2js;
 let app = express();
 
 let port = process.env.PORT || 3000;

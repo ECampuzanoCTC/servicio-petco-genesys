@@ -29,7 +29,7 @@ app.get('/getContacto',  (req, res)=>{
         params.byParam = "telefono";
         params.paramValue = telefono;
     }else{
-        return res.send({
+        return res.status(400).send({
             err: "El parámetro es requerido"
         })
     }
@@ -37,19 +37,28 @@ app.get('/getContacto',  (req, res)=>{
     axios.get(`http://201.149.55.114/ctconsulting.petco-servicio/getContacto?by=${by}&${params.byParam}=${params.paramValue}`)
     .then(({data})=>{
         if(!data.idcli)
-            return res.send({ ...data, comentarios:[] })
+            return res.status(200).send({ ...data, comentarios:"" })
 
         responseObj = {...data, comentarios:[]};
         return axios.get(`http://201.149.55.114/ctconsulting.petco-servicio/getComentario?IDCLi=${data.idcli}`)
     })
     .then(({data})=>{
         if(data.length < 1)
-            return res.send(responseObj);
+            return res.status(200).send(responseObj);
 
-        responseObj.comentarios = data;
-        res.send(responseObj);
+        let comentarios = "";
+        let dummyDate = new Date();
+        for(var c of data){
+            comentarios = comentarios.concat(`${dummyDate.getDate()}/${dummyDate.getMonth() + 1}/${dummyDate.getFullYear()} ${c.comentario}\n`);
+        }
+
+        responseObj = {
+            ...responseObj,
+            comentarios
+        };
+        res.status(200).send(responseObj);
     })
-    .catch(err=>res.send(err))
+    .catch(err=>res.status(500).send(err))
 });
 
 app.listen(port, (err)=>{

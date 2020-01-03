@@ -20,6 +20,8 @@ app.get('/getContacto',  (req, res)=>{
 
     let { by, correo, telefono } = req.query;
     let params = {};
+    let responseObj = {};
+
     if(correo){
         params.byParam = "correo";
         params.paramValue = correo;
@@ -27,14 +29,27 @@ app.get('/getContacto',  (req, res)=>{
         params.byParam = "telefono";
         params.paramValue = telefono;
     }else{
-        res.send({
+        return res.send({
             err: "El parámetro es requerido"
         })
     }
+
     axios.get(`http://201.149.55.114/ctconsulting.petco-servicio/getContacto?by=${by}&${params.byParam}=${params.paramValue}`)
     .then(({data})=>{
-        res.send(data);
+        if(!data.idcli)
+            return res.send({ ...data, comentarios:[] })
+
+        responseObj = {...data, comentarios:[]};
+        return axios.get(`http://201.149.55.114/ctconsulting.petco-servicio/getComentario?IDCLi=${data.idcli}`)
     })
+    .then(({data})=>{
+        if(data.length < 1)
+            return res.send(responseObj);
+
+        responseObj.comentarios = data;
+        res.send(responseObj);
+    })
+    .catch(err=>res.send(err))
 });
 
 app.listen(port, (err)=>{

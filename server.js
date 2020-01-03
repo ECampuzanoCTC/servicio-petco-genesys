@@ -65,6 +65,7 @@ app.get('/getContacto',  (req, res)=>{
 
 app.post("/addComentario", (req, res)=>{
     let { comentario, idcli } = req.query;
+    console.log(JSON.stringify(req.query, undefined, 2));
     if(!comentario || !idcli)
         return res.status(500).send({err: "Se necesitan los parametros comentario e idcli"});
     axios.post(`http://201.149.55.114/ctconsulting.petco-servicio/addComentario?comentario=${encodeURI(comentario)}&IDCLi=${idcli}`)

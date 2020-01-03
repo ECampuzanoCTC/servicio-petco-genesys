@@ -8,6 +8,8 @@ import xml2js  from 'xml2js';
 let { parseString } = xml2js;
 let app = express();
 
+app.use(bp.json());
+
 let port = process.env.PORT || 3000;
 
 app.get('/ping', (req, res)=>{

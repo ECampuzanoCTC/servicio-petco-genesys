@@ -39,12 +39,12 @@ app.get('/getContacto',  (req, res)=>{
         if(!data.idcli)
             return res.status(200).send({ ...data, comentarios:"" })
 
-        responseObj = {...data, comentarios:[]};
+        responseObj = {...data};
         return axios.get(`http://201.149.55.114/ctconsulting.petco-servicio/getComentario?IDCLi=${data.idcli}`)
     })
     .then(({data})=>{
         if(data.length < 1)
-            return res.status(200).send(responseObj);
+            return res.status(200).send({.catch.catch.responseObj, comentarios:""});
 
         let comentarios = "";
         let dummyDate = new Date();

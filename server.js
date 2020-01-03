@@ -1,5 +1,5 @@
 import express from 'express';
-import bp from 'body-parser';
+import bp, { json } from 'body-parser';
 import axios from 'axios';
 import xml2js  from 'xml2js';
 
@@ -59,6 +59,17 @@ app.get('/getContacto',  (req, res)=>{
         res.status(200).send(responseObj);
     })
     .catch(err=>res.status(500).send(err))
+});
+
+app.post("/addComentario", (req, res)=>{
+    let { comentario, idcli } = req.query;
+    if(!comentario || !idcli)
+        return res.status(500).send({err: "Se necesitan los parametros comentario e idcli"});
+    axios.post(`http://201.149.55.114/ctconsulting.petco-servicio/addComentario?comentario=${encodeURI(comentario)}&IDCLi=${idcli}`)
+    .then(({data})=>{
+        res.status(200).send({...data})
+    })
+    .catch(err=>res.status(404).send(err))
 });
 
 app.listen(port, (err)=>{

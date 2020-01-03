@@ -44,7 +44,7 @@ app.get('/getContacto',  (req, res)=>{
     })
     .then(({data})=>{
         if(data.length < 1)
-            return res.status(200).send({.catch.catch.responseObj, comentarios:""});
+            return res.status(200).send({...responseObj, comentarios:""});
 
         let comentarios = "";
         let dummyDate = new Date();

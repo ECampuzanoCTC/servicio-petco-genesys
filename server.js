@@ -27,7 +27,7 @@ app.get('/getContacto',  (req, res)=>{
         params.paramValue = correo;
     }else if(telefono){
         params.byParam = "telefono";
-        params.paramValue = telefono;
+        params.paramValue = telefono.replace("tel:", "");
     }else{
         return res.status(400).send({
             err: "El parámetro es requerido"

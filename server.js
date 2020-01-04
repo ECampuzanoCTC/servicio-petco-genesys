@@ -1,5 +1,5 @@
 import express from 'express';
-import bp, { json } from 'body-parser';
+import bp from 'body-parser';
 import axios from 'axios';
 import xml2js  from 'xml2js';
 
@@ -74,7 +74,16 @@ app.post("/addComentario", (req, res)=>{
     })
     .catch(err=>res.status(404).send(err))
 });
-
+app.post("/addContacto", (req, res)=>{
+    let { nombre, correo, telefono, idcli } = req.body;
+    if(!( nombre && correo && telefono && idcli ))
+        return res.status(400).send({err: "Se necesitan todos los parámetros"});
+    axios.post(`http://201.149.55.114/ctconsulting.petco-servicio/addContacto?nombre=${nombre}&telefono=${telefono}&correo=${correo}&IDCLi=${idcli}`)
+    .then(({ data })=>{
+        res.send(data);
+    })
+    .catch(err=>res.status(500).send(err))
+})
 app.listen(port, (err)=>{
     if(err) 
         console.log(err);
